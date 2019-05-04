@@ -1,14 +1,16 @@
 package com.api.logic;
 
 
+import org.apache.http.HttpStatus;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 public class APIClass {
 
-	public static Response apiGetMethod(String URI) throws Exception {
+	public static Response apiGetMethod(String URI, String contentType) throws Exception {
 
-		Response API_response = RestAssured.given().get(URI);
+		Response API_response =RestAssured.given().header("Content-Type", contentType).get(URI);
 		
 		if (API_response.getStatusCode() == 200) {
 			System.out.println(("ResponseCode for API is " + API_response.getStatusCode()));
